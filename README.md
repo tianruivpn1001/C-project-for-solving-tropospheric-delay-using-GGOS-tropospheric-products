@@ -1,5 +1,10 @@
 # C project for solving tropospheric delay using GGOS tropospheric products
  项目作者：田睿 本科毕业于北京航空航天大学，现在读研，GNSS领域入门两年。
+ 请注意！
+ 该项目原始路径为：E:\Thesis\RTKLIB_Workspace\WorkSpace\For_Thesis\For_Thesis
+ 项目名称为For_Thesis(即上传的文件夹中包含的内容)
+ 在笔者Win10系统、VS2017上成功运行，亲测可用！！！
+ 请务必仔细阅读此文件！！！
   ==============程序主要功能==============
   本程序的主要功能是基于GGOS对流层产品进行对流层延迟解算，还可用于rtklib开源项目的二次开发及改进。 总之，该程序的目的是方便其他使用rtklib开源项目的GNSS研究者，提高其科研效率。
   ==============程序基本信息==============
