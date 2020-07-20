@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" InitialTargets="dirent_init">
+  <PropertyGroup Label="Debug and static and RuntimeLibraryNull" Condition="( $(Configuration.ToLower().IndexOf('debug')) &gt; -1 ) And '$(Linkage-dirent.ToLower())' == 'static' And ('$(RuntimeLibrary)' == '')">
+    <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+  </PropertyGroup>
+  <PropertyGroup Label="Release and static and RuntimeLibraryNull" Condition="( $(Configuration.ToLower().IndexOf('debug')) == -1 ) And '$(Linkage-dirent.ToLower())' == 'static' And ('$(RuntimeLibrary)' == '')">
+    <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+  </PropertyGroup>
+  <PropertyGroup Label="Debug and ltcg and RuntimeLibraryNull" Condition="( $(Configuration.ToLower().IndexOf('debug')) &gt; -1 ) And '$(Linkage-dirent.ToLower())' == 'ltcg' And ('$(RuntimeLibrary)' == '')">
+    <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+  </PropertyGroup>
+  <PropertyGroup Label="Release and ltcg and RuntimeLibraryNull" Condition="( $(Configuration.ToLower().IndexOf('debug')) == -1 ) And '$(Linkage-dirent.ToLower())' == 'ltcg' And ('$(RuntimeLibrary)' == '')">
+    <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+  </PropertyGroup>
+  <PropertyGroup Label="Default initializers for properties">
+    <Linkage-dirent Condition="'$(Linkage-dirent)' == ''">dynamic</Linkage-dirent>
+    <CallingConvention-dirent Condition="'$(CallingConvention-dirent)' == ''">cdecl</CallingConvention-dirent>
+  </PropertyGroup>
+  <ItemGroup>
+    <PropertyPageSchema Include="$(MSBuildThisFileDirectory)\default-propertiesui.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PropertyPageSchema Include="$(MSBuildThisFileDirectory)\dirent-propertiesui-352861c4-5de3-4f35-ade9-aac81ceace95.xml" />
+  </ItemGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <PreprocessorDefinitions>HAS_DIRENT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(MSBuildThisFileDirectory)../..//build/native/include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Label="static" Condition="'$(Linkage-dirent.ToLower())' == 'static'">
+    <ClCompile>
+      <RuntimeLibrary>$(RuntimeLibrary)</RuntimeLibrary>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Label="ltcg" Condition="'$(Linkage-dirent.ToLower())' == 'ltcg'">
+    <ClCompile>
+      <RuntimeLibrary>$(RuntimeLibrary)</RuntimeLibrary>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <UsingTask TaskName="dirent_Contains" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll" TaskFactory="CodeTaskFactory">
+    <ParameterGroup>
+      <Text Output="false" ParameterType="System.String" />
+      <Library Output="false" Required="true" ParameterType="System.String" />
+      <Value Output="false" Required="true" ParameterType="System.String" />
+      <Result Output="true" ParameterType="System.String" />
+    </ParameterGroup>
+    <Task>
+      <Code>Result = ((Text ?? "").Split(';').Contains(Library) ) ? Value : String.Empty;</Code>
+    </Task>
+  </UsingTask>
+  <Target Name="dirent_init">
+    <dirent_Contains Text="Linkage-dynamic" Library="dirent" Value="dynamic" Condition="'$(Linkage-dirent)'==''">
+      <Output TaskParameter="Result" PropertyName="Linkage-dirent" />
+    </dirent_Contains>
+    <dirent_Contains Text="Linkage-static" Library="dirent" Value="static" Condition="'$(Linkage-dirent)'==''">
+      <Output TaskParameter="Result" PropertyName="Linkage-dirent" />
+    </dirent_Contains>
+    <dirent_Contains Text="Linkage-ltcg" Library="dirent" Value="ltcg" Condition="'$(Linkage-dirent)'==''">
+      <Output TaskParameter="Result" PropertyName="Linkage-dirent" />
+    </dirent_Contains>
+    <dirent_Contains Text="Linkage-sxs" Library="dirent" Value="sxs" Condition="'$(Linkage-dirent)'==''">
+      <Output TaskParameter="Result" PropertyName="Linkage-dirent" />
+    </dirent_Contains>
+    <dirent_Contains Text="CallingConvention-cdecl" Library="dirent" Value="cdecl" Condition="'$(CallingConvention-dirent)'==''">
+      <Output TaskParameter="Result" PropertyName="CallingConvention-dirent" />
+    </dirent_Contains>
+    <dirent_Contains Text="CallingConvention-stdcall" Library="dirent" Value="stdcall" Condition="'$(CallingConvention-dirent)'==''">
+      <Output TaskParameter="Result" PropertyName="CallingConvention-dirent" />
+    </dirent_Contains>
+    <dirent_Contains Text="CallingConvention-fastcall" Library="dirent" Value="fastcall" Condition="'$(CallingConvention-dirent)'==''">
+      <Output TaskParameter="Result" PropertyName="CallingConvention-dirent" />
+    </dirent_Contains>
+    <dirent_Contains Text="CallingConvention-thiscall" Library="dirent" Value="thiscall" Condition="'$(CallingConvention-dirent)'==''">
+      <Output TaskParameter="Result" PropertyName="CallingConvention-dirent" />
+    </dirent_Contains>
+    <dirent_Contains Text="CallingConvention-clrcall" Library="dirent" Value="clrcall" Condition="'$(CallingConvention-dirent)'==''">
+      <Output TaskParameter="Result" PropertyName="CallingConvention-dirent" />
+    </dirent_Contains>
+  </Target>
+</Project>

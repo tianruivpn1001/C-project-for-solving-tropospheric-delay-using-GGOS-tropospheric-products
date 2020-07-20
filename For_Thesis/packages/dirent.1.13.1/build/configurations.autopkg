@@ -1,0 +1,13 @@
+configurations {
+    Configuration { 
+        key : "Configuration";
+        choices : { Release, Debug };
+    };
+    Linkage { 
+        choices : { dynamic, static, ltcg };
+    };
+    Other { 
+        key : "OTHER_STUFF";
+        choices : { RuntimeLibraryNull };
+    };
+};

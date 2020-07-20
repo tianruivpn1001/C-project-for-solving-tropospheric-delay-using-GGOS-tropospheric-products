@@ -1,0 +1,5 @@
+﻿  main.cpp
+e:\study\vs2017\vs\vc\tools\msvc\14.16.27023\include\memory(1924): warning C4003: not enough arguments for function-like macro invocation 'lock'
+e:\study\vs2017\vs\vc\tools\msvc\14.16.27023\include\memory(1936): warning C4003: not enough arguments for function-like macro invocation 'lock'
+e:\study\vs2017\vs\vc\tools\msvc\14.16.27023\include\memory(1993): warning C4003: not enough arguments for function-like macro invocation 'lock'
+  For_Thesis.vcxproj -> E:\Thesis\RTKLIB_Workspace\WorkSpace\For_Thesis\For_Thesis\x64\Debug\For_Thesis.exe
